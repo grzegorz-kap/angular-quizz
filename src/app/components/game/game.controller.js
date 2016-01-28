@@ -15,7 +15,7 @@
     var answered = [];
     var questions = [];
 
-    game.done = function() {
+    game.done = function () {
       alert(gameService.computeResult(questions))
     };
 
@@ -46,7 +46,7 @@
         element.selected = element.id == answer.id;
       });
       checkIfCompleted();
-      if( PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
+      if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
         game.move(1);
       } else {
         game.current.displayCorrect = true;
@@ -61,10 +61,6 @@
       return game.current.displayCorrect && a.selected == a.correct;
     };
 
-    game.showMistake = function (a) {
-      return game.current.displayCorrect && a.correct && !a.selected;
-    };
-
     function loadQuestions() {
       var that = game;
       gameService.getQuestions('definitions', 20).then(function (t) {
@@ -72,6 +68,7 @@
         that.load(0);
       });
     }
+
     function checkIfCompleted() {
       if ($.inArray(game.current.id, answered) == -1) {
         answered.push(game.current.id);
