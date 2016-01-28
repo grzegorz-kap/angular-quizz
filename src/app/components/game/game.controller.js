@@ -4,7 +4,7 @@
   angular.module('testApp').controller('GameController', GameController);
 
   /** @ngInject */
-  function GameController($stateParams, gameService, PLAY_MODE, $location) {
+  function GameController(gameService, PLAY_MODE, LEARN_MODE, $stateParams,  $location, $timeout) {
     var game = {};
     game.mode = $stateParams.mode;
     game.currentIndex = 0;
@@ -54,19 +54,16 @@
         element.selected = element.id == answer.id;
       });
       checkIfCompleted();
+      game.current.displayCorrect = LEARN_MODE == game.mode;
       if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
-        game.move(1);
-      } else {
-        game.current.displayCorrect = true;
+          $timeout(function() {
+            game.move(1);
+          }, 400);
       }
     };
 
     game.questionsLength = function () {
       return questions.length;
-    };
-
-    game.isAnswerCorrect = function (a) {
-      return game.current.displayCorrect && a.selected == a.correct;
     };
 
     function loadQuestions() {

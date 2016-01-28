@@ -4,7 +4,7 @@
   </div>
   <ul class="list-group">
     <li class="list-group-item" ng-repeat="answer in vm.question.answers" ng-click="vm.clicked(answer)"
-        ng-class="{ 'answered' : answer.selected , 'answer-incorrect': vm.showMistake(answer)}">
+        ng-class="{ 'answered' : answer.selected , 'answer-incorrect': vm.showMistake(answer) , 'answer-correct': vm.showCorrect(answer)}">
       {{answer.content}}
     </li>
   </ul>

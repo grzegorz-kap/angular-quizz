@@ -28,6 +28,9 @@
       vm.showMistake = function (a) {
         return vm.question.displayCorrect && a.correct && !a.selected;
       };
+      vm.showCorrect = function (a) {
+        return vm.question.displayCorrect && a.correct && a.selected;
+      };
       return vm;
     }
   }
