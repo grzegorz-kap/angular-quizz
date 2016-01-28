@@ -11,12 +11,14 @@
     vm.questions = [];
     vm.score = 0;
     vm.total = 0;
+    vm.time = "Brak danych";
 
     function init() {
       if (data) {
         vm.questions = data.questions;
         vm.score = gameService.computeResult(data.questions);
         vm.total = data.questions.length;
+        vm.time = data.time;
         vm.questions.forEach(function (q) {
           q.displayCorrect = true;
         });

@@ -18,7 +18,11 @@
     game.done = function () {
       var confirmed = confirm("Zakończyć test?");
       if(confirmed) {
-        var key = gameService.storeResult({questions: questions, mode: game.mode});
+        var key = gameService.storeResult({
+          questions: questions,
+          mode: game.mode,
+          time: $("#test-timer").text()
+        });
         $location.url('/result/:key'.replace(':key', key));
       }
     };
