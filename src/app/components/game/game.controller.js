@@ -4,7 +4,7 @@
   angular.module('testApp').controller('GameController', GameController);
 
   /** @ngInject */
-  function GameController($stateParams, gameService, LEARN_MODE, PLAY_MODE) {
+  function GameController($stateParams, gameService, PLAY_MODE, $location) {
     var game = {};
     game.mode = $stateParams.mode;
     game.currentIndex = 0;
@@ -16,7 +16,8 @@
     var questions = [];
 
     game.done = function () {
-      alert(gameService.computeResult(questions))
+      var key = gameService.storeResult({questions: questions, mode: game.mode});
+      $location.url('/result/:key'.replace(':key', key));
     };
 
     game.load = function (index) {

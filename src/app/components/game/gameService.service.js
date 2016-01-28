@@ -4,11 +4,14 @@
 
   /** @ngInject */
   function gameService($log, $http, utilsService) {
+    var storedResults = {};
 
     return {
       getQuestions: getQuestions,
       computeResult: computeResult,
-      isCorrect: isCorrect
+      isCorrect: isCorrect,
+      storeResult: storeResult,
+      readResult: readResult
     };
 
     function getQuestions(mode, limit) {
@@ -24,6 +27,16 @@
       function failed(error) {
         $log.error('Failed to download questions from server.\n' + angular.toJson(error.data, true));
       }
+    }
+
+    function storeResult(data) {
+      var key = new Date().getTime().toString();
+      storedResults[key] = data;
+      return key;
+    }
+
+    function readResult(key) {
+      return storedResults[key];
     }
 
     function computeResult(questions) {

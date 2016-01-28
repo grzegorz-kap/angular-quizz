@@ -1,0 +1,15 @@
+<div class="container">
+  <header>
+    <h1>Wyniki testu</h1>
+  </header>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well well-sm">Punkty: {{vm.score}} / {{vm.total}}</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <question data-question="q" ng-repeat="q in vm.questions"></question>
+    </div>
+  </div>
+</div>

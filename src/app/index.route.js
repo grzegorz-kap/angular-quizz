@@ -17,6 +17,12 @@
         templateUrl: 'app/components/game/game.html',
         controller: 'GameController',
         controllerAs: 'game'
+      })
+      .state('result', {
+        url: '/result/:key',
+        templateUrl: 'app/components/result/result.html',
+        controller: 'ResultController',
+        controllerAs: 'vm'
       });
     $urlRouterProvider.otherwise('/');
   }
