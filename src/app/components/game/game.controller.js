@@ -16,8 +16,11 @@
     var questions = [];
 
     game.done = function () {
-      var key = gameService.storeResult({questions: questions, mode: game.mode});
-      $location.url('/result/:key'.replace(':key', key));
+      var confirmed = confirm("Zakończyć test?");
+      if(confirmed) {
+        var key = gameService.storeResult({questions: questions, mode: game.mode});
+        $location.url('/result/:key'.replace(':key', key));
+      }
     };
 
     game.load = function (index) {

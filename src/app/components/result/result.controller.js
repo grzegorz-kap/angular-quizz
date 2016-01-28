@@ -24,7 +24,7 @@
         $location.url('/');
       }
     }
-    
+
     init();
     return vm;
   }
