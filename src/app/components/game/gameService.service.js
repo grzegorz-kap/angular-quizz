@@ -6,7 +6,9 @@
   function gameService($log, $http, utilsService) {
 
     return {
-      getQuestions: getQuestions
+      getQuestions: getQuestions,
+      computeResult: computeResult,
+      isCorrect: isCorrect
     };
 
     function getQuestions(mode, limit) {
@@ -22,6 +24,22 @@
       function failed(error) {
         $log.error('Failed to download questions from server.\n' + angular.toJson(error.data, true));
       }
+    }
+
+    function computeResult(questions) {
+      var points = 0;
+      questions.forEach(function(question) {
+        points += isCorrect(question) ? 1 : 0;
+      });
+      return points;
+    }
+
+    function isCorrect(question) {
+      var correct = true;
+      question.answers.forEach( function(answer) {
+        correct = correct && answer.selected == answer.correct;
+      });
+      return correct;
     }
 
     function shuffleAndLimit(data, limit) {

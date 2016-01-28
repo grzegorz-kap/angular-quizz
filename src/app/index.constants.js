@@ -4,7 +4,7 @@
 
   angular
     .module('testApp')
-    .constant('malarkey', malarkey)
-    .constant('moment', moment);
+    .constant("PLAY_MODE", 'play')
+    .constant('LEARN_MODE', 'learn');
 
 })();

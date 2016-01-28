@@ -1,8 +1,28 @@
 <div class="container" ng-cloak="">
   <header>
-    <h1>{{ mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}</h1>
+    <h1>{{ game.mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}</h1>
   </header>
-  <div>
-    Pytanie {{currentIndex+1}} z {{questionsLength()}}
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>{{game.current.question}}</strong>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="answer in game.current.answers" ng-click="game.answered(answer)"
+              ng-class="{ 'answered' : answer.selected , 'answer-incorrect': game.showMistake(answer)}">
+            {{answer.content}}
+          </li>
+        </ul>
+        <div class="panel-footer">
+          <span class="label label-primary" ng-click="game.move(-1)">Poprzednie</span>
+          <span class="label label-primary">Pytanie {{game.currentIndex+1}} z {{game.questionsLength()}}</span>
+          <span class="label label-primary" ng-click="game.move(1)">Następne</span>
+          <button class="btn btn-success btn-xs pull-right" ng-disabled="!game.complated" ng-click="game.done()">
+            Koniec
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

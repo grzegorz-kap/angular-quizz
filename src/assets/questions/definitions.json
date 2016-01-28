@@ -6,19 +6,24 @@
       "answers": [
         {
           "id": 1,
-          "content": "ambona"
+          "content": "ambona",
+          "correct": true
         },
         {
           "id": 2,
-          "content": "anons"
+          "content": "anons",
+          "correct": false
         },
         {
           "id": 3,
-          "content": "antabka"
+          "content": "antabka",
+          "correct": false
+        },
+        {
+          "id": 7,
+          "content": "krzesło",
+          "correct": false
         }
-      ],
-      "correct": [
-        1
       ]
     },
     {
@@ -27,19 +32,76 @@
       "answers": [
         {
           "id": 4,
-          "content": "barłóg"
+          "content": "barłóg",
+          "correct": false
         },
         {
           "id": 5,
-          "content": "brok"
+          "content": "brok",
+          "correct": false
         },
         {
           "id": 6,
-          "content": "babrzysko"
+          "content": "babrzysko",
+          "correct": true
+        },
+        {
+          "id": 8,
+          "content": "sadsadsadsa",
+          "correct": false
         }
-      ],
-      "correct": [
-        6
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Najgorszy język programowania na świecie",
+      "answers": [
+        {
+          "id": 100,
+          "content": "C#",
+          "correct": true
+        },
+        {
+          "id": 101,
+          "content": "Java",
+          "correct": false
+        },
+        {
+          "id": 102,
+          "content": "Java",
+          "correct": false
+        },
+        {
+          "id": 103,
+          "content": "Java",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Urządzenie łączące segmenty sieci komputerowej pracujące głównie w drugiej warstwie modelu ISO/OSI (łącza danych), jego zadaniem jest przekazywanie ramki między segmentami sieci z doborem portu przełącznika, na który jest przekazywana.",
+      "answers": [
+        {
+          "id": 300,
+          "content": "switch",
+          "correct": true
+        },
+        {
+          "id": 201,
+          "content": "router",
+          "correct": false
+        },
+        {
+          "id": 202,
+          "content": "hub",
+          "correct": false
+        },
+        {
+          "id": 203,
+          "content": "Nie wiem",
+          "correct": false
+        }
       ]
     }
   ]

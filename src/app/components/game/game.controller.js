@@ -4,32 +4,84 @@
   angular.module('testApp').controller('GameController', GameController);
 
   /** @ngInject */
-  function GameController($scope, $log, $stateParams, gameService) {
-    $scope.mode = $stateParams.mode;
-    $scope.currentIndex = 0;
-    $scope.current = undefined;
+  function GameController($stateParams, gameService, LEARN_MODE, PLAY_MODE) {
+    var game = {};
+    game.mode = $stateParams.mode;
+    game.currentIndex = 0;
+    game.current = undefined;
+    game.complated = false;
+    game.timer = 0;
 
+    var answered = [];
     var questions = [];
 
-    $scope.load = function(index) {
-      if(index < questions.length) {
-        $scope.currentIndex = index;
-        $scope.current = questions[index];
+    game.done = function() {
+      alert(gameService.computeResult(questions))
+    };
+
+    game.load = function (index) {
+      if (index < questions.length) {
+        game.currentIndex = index;
+        game.current = questions[index];
       }
     };
 
-    $scope.questionsLength = function() {
+    game.isFirst = function () {
+      return game.currentIndex == 0;
+    };
+
+    game.isLast = function () {
+      return game.currentIndex >= questions.length - 1;
+    };
+
+    game.move = function (val) {
+      if (game.currentIndex + val >= 0 && game.currentIndex + val < questions.length) {
+        game.currentIndex += val;
+      }
+      game.current = questions[game.currentIndex];
+    };
+
+    game.answered = function (answer) {
+      game.current.answers.forEach(function (element) {
+        element.selected = element.id == answer.id;
+      });
+      checkIfCompleted();
+      if( PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
+        game.move(1);
+      } else {
+        game.current.displayCorrect = true;
+      }
+    };
+
+    game.questionsLength = function () {
       return questions.length;
     };
 
+    game.isAnswerCorrect = function (a) {
+      return game.current.displayCorrect && a.selected == a.correct;
+    };
+
+    game.showMistake = function (a) {
+      return game.current.displayCorrect && a.correct && !a.selected;
+    };
+
     function loadQuestions() {
+      var that = game;
       gameService.getQuestions('definitions', 20).then(function (t) {
         questions = t.questions;
-        $scope.load(0);
+        that.load(0);
       });
+    }
+    function checkIfCompleted() {
+      if ($.inArray(game.current.id, answered) == -1) {
+        answered.push(game.current.id);
+      }
+      game.complated = answered.length == questions.length;
     }
 
     loadQuestions();
+
+    return game;
   }
 })();
 
