@@ -12,6 +12,7 @@
     game.timer = 0;
 
     var questions = [];
+    var automaticEndRejected = false;
 
     game.done = function () {
       var data = {
@@ -56,10 +57,11 @@
     };
 
     game.move = function (val) {
-      if (game.currentIndex + val >= 0 && game.currentIndex + val < questions.length) {
-        game.currentIndex += val;
+      var newIndex = game.currentIndex + val;
+      if (newIndex >= 0 && newIndex < questions.length) {
+        game.currentIndex = newIndex;
+        game.current = questions[game.currentIndex];
       }
-      game.current = questions[game.currentIndex];
     };
 
     game.answered = function (answer) {
@@ -69,6 +71,7 @@
       game.current.displayCorrect = LEARN_MODE == game.mode;
       if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
         $timeout(function () {
+          automaticEnd();
           game.move(1);
         }, 400);
       }
@@ -84,6 +87,13 @@
         questions = t.questions;
         that.load(0);
       });
+    }
+
+    function automaticEnd() {
+      if(game.mode == PLAY_MODE && !automaticEndRejected && game.isLast()) {
+        game.done();
+        automaticEndRejected = true;
+      }
     }
 
     loadQuestions();
