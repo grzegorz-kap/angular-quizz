@@ -11,7 +11,8 @@
       computeResult: computeResult,
       isCorrect: isCorrect,
       storeResult: storeResult,
-      readResult: readResult
+      readResult: readResult,
+      countAnswered: countAnswered
     };
 
     function getQuestions(mode, limit) {
@@ -27,6 +28,19 @@
       function failed(error) {
         $log.error('Failed to download questions from server.\n' + angular.toJson(error.data, true));
       }
+    }
+
+    function countAnswered(questions) {
+      var count = 0;
+      questions.forEach(function (q) {
+        for (var i = 0; i < q.answers.length; i++) {
+          if (q.answers[i].selected) {
+            count += 1;
+            break;
+          }
+        }
+      });
+      return count;
     }
 
     function storeResult(data) {

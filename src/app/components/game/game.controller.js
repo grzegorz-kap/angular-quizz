@@ -4,27 +4,40 @@
   angular.module('testApp').controller('GameController', GameController);
 
   /** @ngInject */
-  function GameController(gameService, PLAY_MODE, LEARN_MODE, $stateParams,  $location, $timeout) {
+  function GameController(gameService, PLAY_MODE, LEARN_MODE, MODALS, $stateParams, $location, $timeout, $modal) {
     var game = {};
     game.mode = $stateParams.mode;
     game.currentIndex = 0;
     game.current = undefined;
-    game.complated = false;
     game.timer = 0;
 
-    var answered = [];
     var questions = [];
 
     game.done = function () {
-      var confirmed = confirm("Zakończyć test?");
-      if(confirmed) {
+      var data = {
+        questions: questions,
+        mode: game.mode,
+        time: angular.element("#test-timer").text()
+      };
+
+      $modal.open({
+        templateUrl: MODALS.END_TEST_MODAL,
+        controller: 'TestEndModalController',
+        controllerAs: 'vm',
+        size: 'md',
+        resolve: {
+          test: function () {
+            return data;
+          }
+        }
+      }).result.then(function () {
         var key = gameService.storeResult({
           questions: questions,
           mode: game.mode,
-          time: $("#test-timer").text()
+          time: angular.element("#test-timer").text()
         });
         $location.url('/result/:key'.replace(':key', key));
-      }
+      });
     };
 
     game.load = function (index) {
@@ -53,12 +66,11 @@
       game.current.answers.forEach(function (element) {
         element.selected = element.id == answer.id;
       });
-      checkIfCompleted();
       game.current.displayCorrect = LEARN_MODE == game.mode;
       if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
-          $timeout(function() {
-            game.move(1);
-          }, 400);
+        $timeout(function () {
+          game.move(1);
+        }, 400);
       }
     };
 
@@ -74,15 +86,7 @@
       });
     }
 
-    function checkIfCompleted() {
-      if ($.inArray(game.current.id, answered) == -1) {
-        answered.push(game.current.id);
-      }
-      game.complated = answered.length == questions.length;
-    }
-
     loadQuestions();
-
     return game;
   }
 })();

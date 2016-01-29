@@ -18,7 +18,7 @@
       <span class="label label-primary" ng-click="game.move(-1)">Poprzednie</span>
       <span class="label label-primary">Pytanie {{game.currentIndex+1}} z {{game.questionsLength()}}</span>
       <span class="label label-primary" ng-click="game.move(1)">Następne</span>
-      <button ng-if="game.mode == PLAY_MODE" class="btn btn-success btn-xs pull-right" ng-disabled="!game.complated" ng-click="game.done()">
+      <button ng-if="game.mode == PLAY_MODE" class="btn btn-success btn-xs pull-right" ng-click="game.done()">
         Koniec
       </button>
     </div>
