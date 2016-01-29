@@ -3,8 +3,8 @@
     <header>
       <div>
         <h1>
-          {{ game.mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}
-         <span class="label label-default pull-right game-timer" ng-if="game.mode == PLAY_MODE">
+          <span>{{ game.mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}</span>
+          <span class="label label-default pull-right game-timer" ng-if="game.mode == PLAY_MODE">
             Czas: <timer id="test-timer" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
           </span>
         </h1>
@@ -14,18 +14,18 @@
 </div>
 <div class="row">
   <div class="col-md-8">
-    <question data-question="game.current" data-select-callback="game.answered"></question>
+    <div class="well well-sm test-navigation-well">
+      <span class="label label-primary" ng-click="game.move(-1)">Poprzednie</span>
+      <span class="label label-primary">Pytanie {{game.currentIndex+1}} z {{game.questionsLength()}}</span>
+      <span class="label label-primary" ng-click="game.move(1)">Następne</span>
+      <button ng-if="game.mode == PLAY_MODE" class="btn btn-success btn-xs pull-right" ng-disabled="!game.complated" ng-click="game.done()">
+        Koniec
+      </button>
+    </div>
   </div>
 </div>
 <div class="row">
   <div class="col-md-8">
-    <div class="well well-sm">
-      <span class="label label-primary" ng-click="game.move(-1)">Poprzednie</span>
-      <span class="label label-primary">Pytanie {{game.currentIndex+1}} z {{game.questionsLength()}}</span>
-      <span class="label label-primary" ng-click="game.move(1)">Następne</span>
-      <button class="btn btn-success btn-xs pull-right" ng-disabled="!game.complated" ng-click="game.done()">
-        Koniec
-      </button>
-    </div>
+    <question data-question="game.current" data-select-callback="game.answered"></question>
   </div>
 </div>
