@@ -66,7 +66,7 @@
 
     function automaticMove() {
       if (game.autoNext && (PLAY_MODE == game.mode || gameService.isCorrect(game.current))) {
-        $timeout(delayedAction, 400);
+        $timeout(delayedAction, 200);
       }
       function delayedAction() {
         automaticEnd();
@@ -97,7 +97,7 @@
 
     function loadQuestions() {
       var that = game;
-      gameService.getQuestions('definitions', 20, game.mode).then(function (t) {
+      gameService.getQuestions(game.mode, $stateParams.questionMode, 20, game.mode).then(function (t) {
         questions = t.questions;
         that.load(0);
       });

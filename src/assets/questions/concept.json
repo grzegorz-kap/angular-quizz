@@ -1,0 +1,56 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "Ambona",
+      "answers": [
+        {
+          "id": 1,
+          "content": "Stanowisko strzeleckie nad ziemią, zbudowane na słupach, czasem na drzewie.",
+          "correct": true
+        },
+        {
+          "id": 2,
+          "content": "Miejsce kąpieli dzików i jeleni.",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "content": "Najgorszy język programowania na świecie",
+          "correct": false
+        },
+        {
+          "id": 7,
+          "content": "Urządzenie łączące segmenty sieci komputerowej pracujące głównie w drugiej warstwie modelu ISO/OSI (łącza danych), jego zadaniem jest przekazywanie ramki między segmentami sieci z doborem portu przełącznika, na który jest przekazywana.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "question": "Ambona",
+      "answers": [
+        {
+          "id": 1,
+          "content": "Stanowisko strzeleckie nad ziemią, zbudowane na słupach, czasem na drzewie.",
+          "correct": true
+        },
+        {
+          "id": 2,
+          "content": "Miejsce kąpieli dzików i jeleni.",
+          "correct": false
+        },
+        {
+          "id": 3,
+          "content": "Najgorszy język programowania na świecie",
+          "correct": false
+        },
+        {
+          "id": 7,
+          "content": "Urządzenie łączące segmenty sieci komputerowej pracujące głównie w drugiej warstwie modelu ISO/OSI (łącza danych), jego zadaniem jest przekazywanie ramki między segmentami sieci z doborem portu przełącznika, na który jest przekazywana.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

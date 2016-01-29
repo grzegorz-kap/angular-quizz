@@ -14,6 +14,7 @@
       'ui.router',
       'ui.bootstrap',
       'toastr',
-      'timer'
+      'timer',
+      'vAccordion'
     ]);
 })();

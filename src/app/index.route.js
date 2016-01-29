@@ -13,7 +13,7 @@
         controllerAs: 'main'
       })
       .state('game', {
-        url: '/game/:mode',
+        url: '/game/:mode/:questionMode',
         templateUrl: 'app/components/game/game.html',
         controller: 'GameController',
         controllerAs: 'game'

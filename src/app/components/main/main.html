@@ -4,10 +4,27 @@
      <header class="header">
        <h1>Quizowanie</h1>
      </header>
-     <div>
-       <div class="menu-link"><a ng-href="#/game/play"><span class="btn btn-success btn-lg  btn-block">Graj</span></a></div>
-       <div class="menu-link"><a ng-href="#/game/learn"><span class="btn btn-success btn-lg  btn-block"> Ucz się</span></a></div>
-     </div>
+     <v-accordion class="vAccordion--default">
+       <v-pane>
+         <v-pane-header>
+           <span class="btn btn-success btn-lg  btn-block">Graj</span>
+         </v-pane-header>
+         <v-pane-content>
+           <a ng-href="#/game/play/definition"><span class="btn btn-primary btn-lg">Definicje</span></a>
+           <a ng-href="#/game/play/concept"><span class="btn btn-primary btn-lg">Pojęcia</span></a>
+         </v-pane-content>
+       </v-pane>
+
+       <v-pane>
+         <v-pane-header>
+           <span class="btn btn-success btn-lg  btn-block">Ucz się</span>
+         </v-pane-header>
+         <v-pane-content>
+           <a ng-href="#/game/play/definition"><span class="btn btn-primary btn-lg">Definicje</span></a>
+           <a ng-href="#/game/play/concept"><span class="btn btn-primary btn-lg">Pojęcia</span></a>
+         </v-pane-content>
+       </v-pane>
+     </v-accordion>
    </div>
   </div>
 </div>

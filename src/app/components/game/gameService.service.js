@@ -15,8 +15,8 @@
       countAnswered: countAnswered
     };
 
-    function getQuestions(mode, limit, playMode) {
-      return $http.get('assets/questions/:mode.json'.replace(':mode', mode))
+    function getQuestions(playMode, questionMode, limit) {
+      return $http.get('assets/questions/:mode.json'.replace(':mode', questionMode))
         .then(success)
         .catch(failed);
 
