@@ -3,8 +3,9 @@
   angular.module('testApp').run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($rootScope, $log, PLAY_MODE, LEARN_MODE) {
+    $rootScope.PLAY_MODE = PLAY_MODE;
+    $rootScope.LEARN_MODE = LEARN_MODE;
     $log.debug('runBlock end');
   }
-
 })();
