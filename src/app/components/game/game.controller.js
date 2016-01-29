@@ -64,17 +64,21 @@
       }
     };
 
+    function automaticMove(){
+          if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
+            $timeout(function () {
+              automaticEnd();
+              game.move(1);
+                  }, 400);
+              }
+          }
+
     game.answered = function (answer) {
       game.current.answers.forEach(function (element) {
         element.selected = element.id == answer.id;
       });
       game.current.displayCorrect = LEARN_MODE == game.mode;
-      if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
-        $timeout(function () {
-          automaticEnd();
-          game.move(1);
-        }, 400);
-      }
+      automaticMove();
     };
 
     game.questionsLength = function () {
@@ -83,7 +87,7 @@
 
     function loadQuestions() {
       var that = game;
-      gameService.getQuestions('definitions', 20).then(function (t) {
+      gameService.getQuestions('definitions', 20, game.mode).then(function (t) {
         questions = t.questions;
         that.load(0);
       });

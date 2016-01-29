@@ -3,7 +3,7 @@
   angular.module('testApp').factory('gameService', gameService);
 
   /** @ngInject */
-  function gameService($log, $http, utilsService) {
+  function gameService($log, $http, utilsService, LEARN_MODE) {
     var storedResults = {};
 
     return {
@@ -15,13 +15,16 @@
       countAnswered: countAnswered
     };
 
-    function getQuestions(mode, limit) {
+    function getQuestions(mode, limit, playMode) {
       return $http.get('assets/questions/:mode.json'.replace(':mode', mode))
         .then(success)
         .catch(failed);
 
       function success(response) {
-        shuffleAndLimit(response.data, limit);
+        utilsService.shuffle(response.data.questions);
+        if (playMode != LEARN_MODE) {
+          response.data.questions = response.data.questions.slice(0, limit);
+        }
         return response.data;
       }
 
@@ -55,7 +58,7 @@
 
     function computeResult(questions) {
       var points = 0;
-      questions.forEach(function(question) {
+      questions.forEach(function (question) {
         points += isCorrect(question) ? 1 : 0;
       });
       return points;
@@ -63,15 +66,10 @@
 
     function isCorrect(question) {
       var correct = true;
-      question.answers.forEach( function(answer) {
+      question.answers.forEach(function (answer) {
         correct = correct && answer.selected == answer.correct;
       });
       return correct;
-    }
-
-    function shuffleAndLimit(data, limit) {
-      utilsService.shuffle(data.questions);
-      data.questions = data.questions.slice(0, limit);
     }
   }
 })();
