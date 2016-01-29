@@ -10,6 +10,7 @@
       'ngMessages',
       'ngAria',
       'ngResource',
+      'ngMaterial',
       'ui.router',
       'ui.bootstrap',
       'toastr',

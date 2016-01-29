@@ -10,6 +10,7 @@
     game.currentIndex = 0;
     game.current = undefined;
     game.timer = 0;
+    game.autoNext = true;
 
     var questions = [];
     var automaticEndRejected = false;
@@ -59,19 +60,19 @@
     game.move = function (val) {
       var newIndex = game.currentIndex + val;
       if (newIndex >= 0 && newIndex < questions.length) {
-        game.currentIndex = newIndex;
-        game.current = questions[game.currentIndex];
+        game.load(newIndex);
       }
     };
 
-    function automaticMove(){
-          if (PLAY_MODE == game.mode || gameService.isCorrect(game.current)) {
-            $timeout(function () {
-              automaticEnd();
-              game.move(1);
-                  }, 400);
-              }
-          }
+    function automaticMove() {
+      if (game.autoNext && (PLAY_MODE == game.mode || gameService.isCorrect(game.current))) {
+        $timeout(delayedAction, 400);
+      }
+      function delayedAction() {
+        automaticEnd();
+        game.move(1);
+      }
+    }
 
     game.answered = function (answer) {
       game.current.answers.forEach(function (element) {
