@@ -21,6 +21,9 @@
       <button ng-if="game.mode == PLAY_MODE" class="btn btn-success btn-xs pull-right" ng-click="game.done()">
         Koniec
       </button>
+      <button ng-if="game.mode == LEARN_MODE" class="btn btn-success btn-xs pull-right" ng-click="game.learnEnd()">
+        Koniec
+      </button>
     </div>
   </div>
 </div>

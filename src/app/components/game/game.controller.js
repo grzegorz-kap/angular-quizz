@@ -86,6 +86,15 @@
       return questions.length;
     };
 
+    game.learnEnd = function() {
+      $modal.open({
+        controller: 'LearnEndModalController',
+        controllerAs: 'vm',
+        templateUrl: MODALS.END_LEARN_MODAL,
+        size: 'md'
+      });
+    };
+
     function loadQuestions() {
       var that = game;
       gameService.getQuestions('definitions', 20, game.mode).then(function (t) {
@@ -95,9 +104,14 @@
     }
 
     function automaticEnd() {
-      if(game.mode == PLAY_MODE && !automaticEndRejected && game.isLast()) {
-        game.done();
+      if (!automaticEndRejected && game.isLast()) {
         automaticEndRejected = true;
+        if (game.mode == PLAY_MODE) {
+          game.done();
+        }
+        else {
+          game.learnEnd();
+        }
       }
     }
 
