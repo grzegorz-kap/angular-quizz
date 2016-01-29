@@ -10,8 +10,8 @@
     game.currentIndex = 0;
     game.current = undefined;
     game.timer = 0;
-    game.autoNext = true;
-
+    game.autoNext = false;
+    game.questions = [];
     var questions = [];
     var automaticEndRejected = false;
 
@@ -66,7 +66,7 @@
 
     function automaticMove() {
       if (game.autoNext && (PLAY_MODE == game.mode || gameService.isCorrect(game.current))) {
-        $timeout(delayedAction, 200);
+        $timeout(delayedAction, 0);
       }
       function delayedAction() {
         automaticEnd();
@@ -99,6 +99,7 @@
       var that = game;
       gameService.getQuestions(game.mode, $stateParams.questionMode, 20, game.mode).then(function (t) {
         questions = t.questions;
+        game.questions = t.questions;
         that.load(0);
       });
     }

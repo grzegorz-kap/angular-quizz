@@ -3,7 +3,7 @@
     <header>
       <div>
         <h1>
-          <span>{{ game.mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}</span>
+          <span style="color: white">{{ game.mode === 'learn' ? 'TRYB NAUKI' : 'TRYB TESTU' }}</span>
           <span class="label label-default pull-right game-timer" ng-if="game.mode == PLAY_MODE">
             Czas: <timer id="test-timer" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
           </span>
@@ -30,6 +30,11 @@
 <div class="row">
   <div class="col-md-8">
     <question data-question="game.current" data-select-callback="game.answered"></question>
+    <!--<carousel interval="1000">-->
+      <!--<slide ng-repeat="q in game.questions">-->
+        <!--<question data-question="q" data-select-callback="game.answered"></question>-->
+      <!--</slide>-->
+    <!--</carousel>-->
   </div>
 </div>
 <div class="row">
