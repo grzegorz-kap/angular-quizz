@@ -1,8 +1,46 @@
-<div class="container" ng-cloak="">
-  <header>
-    <h1>{{ mode === 'learn' ? 'Tryb nauki' : 'Tryb testu' }}</h1>
-  </header>
-  <div>
-    Pytanie {{currentIndex+1}} z {{questionsLength()}}
+<div class="row">
+  <div class="col-md-8">
+    <header>
+      <div>
+        <h1>
+          <span style="color: white">{{ game.mode === 'learn' ? 'TRYB NAUKI' : 'TRYB TESTU' }}</span>
+          <span class="label label-default pull-right game-timer" ng-if="game.mode == PLAY_MODE">
+            Czas: <timer id="test-timer" interval="1000">{{hhours}}:{{mminutes}}:{{sseconds}}</timer>
+          </span>
+        </h1>
+      </div>
+    </header>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="well well-sm test-navigation-well">
+      <span class="label label-primary" ng-click="game.move(-1)">Poprzednie</span>
+      <span class="label label-primary">Pytanie {{game.currentIndex+1}} z {{game.questionsLength()}}</span>
+      <span class="label label-primary" ng-click="game.move(1)">Następne</span>
+      <button ng-if="game.mode == PLAY_MODE" class="btn btn-success btn-xs pull-right" ng-click="game.done()">
+        Koniec
+      </button>
+      <button ng-if="game.mode == LEARN_MODE" class="btn btn-success btn-xs pull-right" ng-click="game.learnEnd()">
+        Koniec
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <question data-question="game.current" data-select-callback="game.answered"></question>
+    <!--<carousel interval="1000">-->
+      <!--<slide ng-repeat="q in game.questions">-->
+        <!--<question data-question="q" data-select-callback="game.answered"></question>-->
+      <!--</slide>-->
+    <!--</carousel>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-8">
+    <div class="well well-sm auto-next-panel">
+      <md-checkbox class="custom-checkbox" ng-model="game.autoNext" aria-label="Auto przewijanie">Auto-przewijanie</md-checkbox>
+    </div>
   </div>
 </div>

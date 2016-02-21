@@ -1,11 +1,31 @@
-<div class="container">
-  <header>
-    <h1>Quizowanie</h1>
-  </header>
+<div class="row">
+  <div class="col-md-6">
+   <div class="well">
+     <header class="header">
+       <h1>Quizowanie</h1>
+     </header>
+     <v-accordion class="vAccordion--default">
+       <v-pane>
+         <v-pane-header>
+           <span class="btn btn-success btn-lg  btn-block">Graj</span>
+         </v-pane-header>
+         <v-pane-content>
+           <a ng-href="#/game/play/definition"><span class="btn btn-primary btn-lg">Definicje</span></a>
+           <a ng-href="#/game/play/concept"><span class="btn btn-primary btn-lg">Pojęcia</span></a>
+         </v-pane-content>
+       </v-pane>
 
-  <h2>Menu</h2>
-  <ul>
-    <li><a ng-href="#/game/play"> Graj</a></li>
-    <li><a ng-href="#/game/learn"> Ucz się</a></li>
-  </ul>
+       <v-pane>
+         <v-pane-header>
+           <span class="btn btn-success btn-lg  btn-block">Ucz się</span>
+         </v-pane-header>
+         <v-pane-content>
+           <a ng-href="#/game/play/definition"><span class="btn btn-primary btn-lg">Definicje</span></a>
+           <a ng-href="#/game/play/concept"><span class="btn btn-primary btn-lg">Pojęcia</span></a>
+         </v-pane-content>
+       </v-pane>
+     </v-accordion>
+   </div>
+  </div>
 </div>
+

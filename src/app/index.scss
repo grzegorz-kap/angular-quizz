@@ -12,6 +12,20 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 // bower:scss
 // endbower
 
+body {
+  padding: 70px;
+  background: url('../assets/images/background.jpg');
+  background-repeat: repeat-y;
+  height: auto;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-inverse .navbar-brand {
+  color: white;
+}
 
 
 /**

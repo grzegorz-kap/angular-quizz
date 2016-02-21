@@ -1,0 +1,16 @@
+<div class="modal-header text-center test-end-modal-header" ng-class="{'test-end-modal-header-alert': vm.missingCount > 0}">
+  <h3 class="modal-title">Czy zakończyć test?</h3>
+</div>
+<div class="modal-body">
+  <div ng-if="vm.missingCount > 0" class="alert alert-danger missed-answers-alert" role="alert">
+    <span class="glyphicon glyphicon-alert"></span>
+    Uwaga! Nie odpowiedziałeś na <strong>{{vm.missingCount}} {{vm.questionWordPlural(vm.missingCount)}}</strong>.
+  </div>
+  <div ng-if="vm.missingCount < 1" class="alert alert-info" role="alert">
+    Odpowiedziałeś na wszystkie pytania w czasie {{vm.time}}.
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" type="button" ng-click="vm.ok()">TAK</button>
+  <button class="btn btn-default" type="button" ng-click="vm.cancel()">NIE</button>
+</div>

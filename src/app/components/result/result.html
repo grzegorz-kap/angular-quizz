@@ -1,0 +1,18 @@
+<div class="container">
+  <header style="color:white">
+    <h1>WYNIK TESTU</h1>
+  </header>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="well well-sm">
+        <span>Punkty: {{vm.score}} / {{vm.total}}</span>
+        <span ng-if="vm.time" class="label label-default pull-right">Czas: {{vm.time}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <question data-question="q" ng-repeat="q in vm.questions"></question>
+    </div>
+  </div>
+</div>

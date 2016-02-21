@@ -1,0 +1,24 @@
+.game-timer {
+  font-size: 20px;
+  border-radius: 0;
+  padding: 9px 8px 9px 8px;
+}
+
+.test-navigation-well {
+  margin-bottom: 5px;
+}
+
+md-checkbox.custom-checkbox {
+  margin-bottom: 0px;
+
+  &.md-checked {
+    .md-icon , .md-ink-ripple {
+      background-color: #337ab7;
+    }
+  }
+}
+
+.auto-next-panel {
+  margin-top: -22px;
+  border-radius: 0px;
+}

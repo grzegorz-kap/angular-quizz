@@ -1,0 +1,20 @@
+.test-end-modal-header {
+  background-color: #7CCA7C;
+  color: white;
+  text-transform: uppercase;
+
+  &.test-end-modal-header-alert {
+    background-color: #E23E3E;
+  }
+
+}
+
+.missed-answers-alert {
+  background-color: #E23E3E;
+  border-color: #ebccd1;
+  color: white;
+
+  span.glyphicon-alert {
+    margin-right: 10px;
+  }
+}
